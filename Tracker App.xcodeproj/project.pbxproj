@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		8BAED0B92B51BE82003D7274 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAED0B82B51BE82003D7274 /* AppDelegate.swift */; };
 		8BAED0BB2B51BE82003D7274 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAED0BA2B51BE82003D7274 /* SceneDelegate.swift */; };
-		8BAED0BD2B51BE82003D7274 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAED0BC2B51BE82003D7274 /* ViewController.swift */; };
-		8BAED0C02B51BE82003D7274 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BAED0BE2B51BE82003D7274 /* Main.storyboard */; };
+		8BAED0BD2B51BE82003D7274 /* TrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAED0BC2B51BE82003D7274 /* TrackerViewController.swift */; };
 		8BAED0C22B51BE84003D7274 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BAED0C12B51BE84003D7274 /* Assets.xcassets */; };
 		8BAED0C52B51BE84003D7274 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BAED0C32B51BE84003D7274 /* LaunchScreen.storyboard */; };
+		8BAED0CD2B51D468003D7274 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAED0CC2B51D468003D7274 /* TabBarViewController.swift */; };
+		8BAED0D02B51D4B6003D7274 /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAED0CF2B51D4B6003D7274 /* StatisticViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8BAED0B52B51BE82003D7274 /* Tracker App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tracker App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BAED0B82B51BE82003D7274 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BAED0BA2B51BE82003D7274 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8BAED0BC2B51BE82003D7274 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8BAED0BF2B51BE82003D7274 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8BAED0BC2B51BE82003D7274 /* TrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerViewController.swift; sourceTree = "<group>"; };
 		8BAED0C12B51BE84003D7274 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8BAED0C42B51BE84003D7274 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8BAED0C62B51BE84003D7274 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BAED0CC2B51D468003D7274 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		8BAED0CF2B51D4B6003D7274 /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +60,22 @@
 			children = (
 				8BAED0B82B51BE82003D7274 /* AppDelegate.swift */,
 				8BAED0BA2B51BE82003D7274 /* SceneDelegate.swift */,
-				8BAED0BC2B51BE82003D7274 /* ViewController.swift */,
-				8BAED0BE2B51BE82003D7274 /* Main.storyboard */,
+				8BAED0CE2B51D48C003D7274 /* ViewControllers */,
 				8BAED0C12B51BE84003D7274 /* Assets.xcassets */,
 				8BAED0C32B51BE84003D7274 /* LaunchScreen.storyboard */,
 				8BAED0C62B51BE84003D7274 /* Info.plist */,
 			);
 			path = "Tracker App";
+			sourceTree = "<group>";
+		};
+		8BAED0CE2B51D48C003D7274 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8BAED0BC2B51BE82003D7274 /* TrackerViewController.swift */,
+				8BAED0CF2B51D4B6003D7274 /* StatisticViewController.swift */,
+				8BAED0CC2B51D468003D7274 /* TabBarViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +138,6 @@
 			files = (
 				8BAED0C52B51BE84003D7274 /* LaunchScreen.storyboard in Resources */,
 				8BAED0C22B51BE84003D7274 /* Assets.xcassets in Resources */,
-				8BAED0C02B51BE82003D7274 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +148,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BAED0BD2B51BE82003D7274 /* ViewController.swift in Sources */,
+				8BAED0CD2B51D468003D7274 /* TabBarViewController.swift in Sources */,
+				8BAED0BD2B51BE82003D7274 /* TrackerViewController.swift in Sources */,
 				8BAED0B92B51BE82003D7274 /* AppDelegate.swift in Sources */,
+				8BAED0D02B51D4B6003D7274 /* StatisticViewController.swift in Sources */,
 				8BAED0BB2B51BE82003D7274 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,14 +159,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8BAED0BE2B51BE82003D7274 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8BAED0BF2B51BE82003D7274 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8BAED0C32B51BE84003D7274 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,9 +296,9 @@
 				INFOPLIST_FILE = "Tracker App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -320,9 +324,9 @@
 				INFOPLIST_FILE = "Tracker App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
