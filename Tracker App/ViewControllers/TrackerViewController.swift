@@ -18,7 +18,7 @@ class TrackerViewController: UIViewController {
         // Создание и настройка надписи
         let label = UILabel()
         label.text = "Что будем отслеживать?"
-        label.textColor = .black
+        label.textColor = .ypBlackDay
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.translatesAutoresizingMaskIntoConstraints = false

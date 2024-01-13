@@ -32,24 +32,23 @@ final class TabBarViewController: UITabBarController {
 
         // Установка контроллеров в таббар
         viewControllers = [createNavigationController(rootViewController: trackerVC),
-                            createNavigationController(rootViewController: statisticVC)]
+                           createNavigationController(rootViewController: statisticVC)]
 
         // Создание и настройка UIView для полосы
-               let separatorLine = UIView()
-               separatorLine.backgroundColor = UIColor(named: "ypGray") // Цвет полосы
-               separatorLine.translatesAutoresizingMaskIntoConstraints = false
+        let separatorLine = UIView()
+        separatorLine.backgroundColor = .ypGray // Цвет полосы
+        separatorLine.translatesAutoresizingMaskIntoConstraints = false
 
         // Добавление UIView на таббар
-                tabBar.addSubview(separatorLine)
+        tabBar.addSubview(separatorLine)
 
         // Настройка ограничений для полосы
-               NSLayoutConstraint.activate([
-                   separatorLine.topAnchor.constraint(equalTo: tabBar.topAnchor),
-                   separatorLine.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor),
-                   separatorLine.trailingAnchor.constraint(equalTo: tabBar.trailingAnchor),
-                   separatorLine.heightAnchor.constraint(equalToConstant: 1) // Толщина полосы
-               ])
-
+        NSLayoutConstraint.activate([
+            separatorLine.topAnchor.constraint(equalTo: tabBar.topAnchor),
+            separatorLine.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor),
+            separatorLine.trailingAnchor.constraint(equalTo: tabBar.trailingAnchor),
+            separatorLine.heightAnchor.constraint(equalToConstant: 1) // Толщина полосы
+        ])
     }
 
     private func createNavigationController(rootViewController: UIViewController) -> UINavigationController {
