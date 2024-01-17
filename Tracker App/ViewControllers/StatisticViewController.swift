@@ -7,13 +7,17 @@
 
 import UIKit
 
-class StatisticViewController: UIViewController {
+final class StatisticViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Установка цвета фона
-        view.backgroundColor = .white
+        view.backgroundColor = .ypWhiteDay
+
+        // Настройка navigationBar с largeTitle
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Статистика"
 
         // Создание и настройка надписи
         let label = UILabel()
