@@ -51,13 +51,59 @@ final class TrackerViewController: UIViewController, UISearchBarDelegate, UISear
         datePicker.preferredDatePickerStyle = .compact
         datePicker.addTarget(
             self,
-            action: #selector(dateChanged(_ :)),
+            action: #selector(dateChanged(_:)),
             for: .valueChanged
         )
 
-        let datePickerItem = UIBarButtonItem(customView: datePicker)
-        navigationItem.rightBarButtonItem = datePickerItem
+        // Настройка формата отображения даты
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yy"
+
+        // Установка локализации для форматтера
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+
+        // Устанавливаем формат даты для датапикера
+        datePicker.datePickerMode = .date
+        datePicker.locale = dateFormatter.locale
+        datePicker.calendar = dateFormatter.calendar
+
+        // Создаем constraint для ширины
+        let widthConstraint = NSLayoutConstraint(
+            item: datePicker,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1.0,
+            constant: 120
+        )
+
+        // Добавляем constraint к датапикеру
+        datePicker.addConstraint(widthConstraint)
+
+        // Устанавливаем вправо на navigationItem
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: datePicker)
+
+        // Устанавливаем формат года
+        let yearFormatter = DateFormatter()
+        yearFormatter.dateFormat = "yy"
+
+        let calendar = Calendar(identifier: .gregorian)
+        let currentDate = Date()
+        var dateComponents = DateComponents()
+        dateComponents.year = -100
+        let maxDate = calendar.date(byAdding: dateComponents, to: currentDate)
+        dateComponents.year = 100
+        let minDate = calendar.date(byAdding: dateComponents, to: currentDate)
+        datePicker.minimumDate = maxDate
+        datePicker.maximumDate = minDate
+        datePicker.date = currentDate
+        datePicker.locale = dateFormatter.locale  // Используем dateFormatter.locale, чтобы учесть формат даты
+        datePicker.calendar = dateFormatter.calendar
     }
+
+
+
 
     func setSearchBarController() {
         searchController = UISearchController(searchResultsController: nil)
