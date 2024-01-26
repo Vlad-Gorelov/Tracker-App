@@ -11,7 +11,10 @@ final class StatisticViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUIStatistic()
+    }
 
+    func setupUIStatistic() {
         // Установка цвета фона
         view.backgroundColor = .ypWhiteDay
 

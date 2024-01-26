@@ -10,12 +10,38 @@ import UIKit
 final class TrackerViewController: UIViewController, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
 
     var searchController: UISearchController!
+    var categories: [TrackerCategory] = []
+    var completedTrackers: [TrackerRecord] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ypWhiteDay
         setEmptyTrackers()
         setNavigationBar()
+    }
+
+ /*   // Добавление нового трекера
+    func addNewTracker(name: String, color: UIColor, emoji: String, schedule: [DayOfWeek], categoryIndex: Int) {
+        let newTracker = Tracker(name: name, color: color, emoji: emoji, schedule: schedule)
+        if categoryIndex < categories.count {
+            categories[categoryIndex].trackers.append(newTracker)
+        } else {
+            let newCategory = TrackerCategory(title: "New Category", trackers: [newTracker])
+            categories.append(newCategory)
+        }
+    } */
+
+    // Отметка трекера как выполненного
+    func markTrackerCompleted(trackerID: UUID, date: Date) {
+        let newRecord = TrackerRecord(trackerID: trackerID, date: date)
+        completedTrackers.append(newRecord)
+    }
+
+    // Отмена выполнения трекера
+    func unmarkTrackerCompleted(trackerID: UUID, date: Date) {
+        completedTrackers = completedTrackers.filter { record in
+            !(record.trackerID == trackerID && record.date == date)
+        }
     }
 
     func  setNavigationBar() {
@@ -118,6 +144,9 @@ final class TrackerViewController: UIViewController, UISearchBarDelegate, UISear
 
     @objc private func addTrackerButtonTapped() {
         // TODO: add logic
+        let trackerTypeVC = TrackerTypeViewController()
+        trackerTypeVC.modalPresentationStyle = .pageSheet
+        present(trackerTypeVC, animated: true)
     }
 
     @objc func dateChanged(_ datePicker: UIDatePicker) {
