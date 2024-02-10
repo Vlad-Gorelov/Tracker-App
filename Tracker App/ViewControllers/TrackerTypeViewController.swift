@@ -47,11 +47,17 @@ final class TrackerTypeViewController: UIViewController {
     }
 
     @objc private func button2Tapped() {
-        navigationTest()
+        navigationTest2()
         print("Создали нерегулярное событие!")
     }
 
     private func navigationTest() {
+        let trackerTypeVC = CrateHabitViewController()
+        trackerTypeVC.modalPresentationStyle = .pageSheet
+        present(trackerTypeVC, animated: true)
+    }
+
+    private func navigationTest2() {
         let trackerTypeVC = ScheduleViewController()
         trackerTypeVC.modalPresentationStyle = .pageSheet
         present(trackerTypeVC, animated: true)

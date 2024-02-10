@@ -30,9 +30,19 @@ final class TabBarViewController: UITabBarController {
             selectedImage: UIImage(named: "statsIcon")
         )
 
+        //удалить
+        let exampleCollectionVC = ExampleCollection()
+        exampleCollectionVC.tabBarItem = UITabBarItem(
+            title: "Пример",
+            image: UIImage(systemName: "gamecontroller"),
+            selectedImage: UIImage(systemName: "gamecontroller")
+        ) //
+
         // Установка контроллеров в таббар
         viewControllers = [createNavigationController(rootViewController: trackerVC),
-                           createNavigationController(rootViewController: statisticVC)]
+                           createNavigationController(rootViewController: statisticVC),
+                           createNavigationController(rootViewController: exampleCollectionVC) //удалить
+        ]
 
         // Создание и настройка UIView для полосы
         let separatorLine = UIView()

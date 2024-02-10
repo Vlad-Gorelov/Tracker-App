@@ -66,6 +66,12 @@ final class ScheduleViewController: UIViewController, UITableViewDelegate, UITab
         // Убираем разделительную полосу у последней ячейки
         tableView.tableFooterView = UIView()
 
+        // Установка отступа разделителя от краёв ячеек
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+
+        // Установка стиля разделителя
+        tableView.separatorStyle = .singleLine
+
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 87),
@@ -87,10 +93,10 @@ final class ScheduleViewController: UIViewController, UITableViewDelegate, UITab
 
         // Убираем разделительную полосу у последней ячейки
         if indexPath.row == daysOfWeek.count - 1 {
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-        } else {
-            cell.separatorInset = UIEdgeInsets.zero
-        }
+               cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: .greatestFiniteMagnitude)
+           } else {
+               cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+           }
 
         // Установка цвета фона для ячейки
         cell.backgroundColor = .ypBgDay
@@ -109,7 +115,7 @@ final class ScheduleViewController: UIViewController, UITableViewDelegate, UITab
         cell.selectionStyle = .none
 
         // Установка цвета активного состояния свитчера
-            switcher.onTintColor = .ypBlue
+        switcher.onTintColor = .ypBlue
 
         // Установка размера шрифта
         cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
@@ -145,7 +151,7 @@ final class ScheduleViewController: UIViewController, UITableViewDelegate, UITab
         button.addTarget(self, action: action, for: .touchUpInside)
 
         // Установка начертания текста и размера шрифта
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
 
         // Добавляем констрейнты для высоты кнопки
         button.heightAnchor.constraint(equalToConstant: 60).isActive = true
