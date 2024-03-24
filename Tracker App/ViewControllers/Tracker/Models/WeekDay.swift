@@ -20,11 +20,15 @@ struct WeekDay: OptionSet {
     static let friday   = WeekDay(rawValue: 1 << 5)
     static let saturday   = WeekDay(rawValue: 1 << 6)
 
-    static func from(date: Date) -> WeekDay {
-        let dayNum = calendar.dateComponents([.weekday], from: date).weekday
-        let dayValue = 1 << (dayNum! - 1)  // сдвиг 1 по битовым разрядам. это возведение 2 в степень
+
+    static func from(date: Date) -> WeekDay? {
+        guard let dayNum = calendar.dateComponents([.weekday], from: date).weekday else {
+            return nil // Обработка ситуации, когда день недели не определен
+        }
+        let dayValue = 1 << (dayNum - 1)  // сдвиг 1 по битовым разрядам. это возведение 2 в степень
         return WeekDay(rawValue: dayValue)
     }
+
 
     func asText() -> String {
         switch self {
@@ -43,7 +47,7 @@ struct WeekDay: OptionSet {
         case .sunday:
             return "Воскресенье"
         default:
-            let week: [WeekDay] = [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]
+            let week: [WeekDay] = [.sunday, .monday, .tuesday, .wednesday, .thursday, .friday, .saturday ]
             return week
                 .filter { day in self.contains(day) }
                 .map({ day in day.asText()})
@@ -68,7 +72,7 @@ struct WeekDay: OptionSet {
         case .sunday:
             return "Вс"
         default:
-            let week: [WeekDay] = [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]
+            let week: [WeekDay] = [ .sunday, .monday, .tuesday, .wednesday, .thursday, .friday, .saturday]
             return week
                 .filter { day in self.contains(day) }
                 .map({ day in day.asShortText()})

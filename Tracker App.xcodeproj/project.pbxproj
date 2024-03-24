@@ -27,6 +27,8 @@
 		8BDFE2852B7433BF005EA3F0 /* TrackerViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFE2842B7433BF005EA3F0 /* TrackerViewHeader.swift */; };
 		8BDFE2892B74385F005EA3F0 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFE2882B74385F005EA3F0 /* DataManager.swift */; };
 		8BDFE28B2B757133005EA3F0 /* CreateHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFE28A2B757133005EA3F0 /* CreateHabitViewController.swift */; };
+		8BDFE28D2B783287005EA3F0 /* TrackerPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFE28C2B783287005EA3F0 /* TrackerPlaceholderView.swift */; };
+		8BDFE28F2B78345F005EA3F0 /* TrackerPlaceholderNoFilterResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDFE28E2B78345F005EA3F0 /* TrackerPlaceholderNoFilterResultsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		8BDFE2842B7433BF005EA3F0 /* TrackerViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerViewHeader.swift; sourceTree = "<group>"; };
 		8BDFE2882B74385F005EA3F0 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		8BDFE28A2B757133005EA3F0 /* CreateHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHabitViewController.swift; sourceTree = "<group>"; };
+		8BDFE28C2B783287005EA3F0 /* TrackerPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerPlaceholderView.swift; sourceTree = "<group>"; };
+		8BDFE28E2B78345F005EA3F0 /* TrackerPlaceholderNoFilterResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerPlaceholderNoFilterResultsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +165,8 @@
 				8BAED0BC2B51BE82003D7274 /* TrackerViewController.swift */,
 				8BDFE2752B60558E005EA3F0 /* TrackerViewCell.swift */,
 				8BDFE2842B7433BF005EA3F0 /* TrackerViewHeader.swift */,
+				8BDFE28C2B783287005EA3F0 /* TrackerPlaceholderView.swift */,
+				8BDFE28E2B78345F005EA3F0 /* TrackerPlaceholderNoFilterResultsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -253,12 +259,14 @@
 				8BDFE2812B646EC0005EA3F0 /* ExampleCollection.swift in Sources */,
 				8BDFE2742B604EB1005EA3F0 /* WeekDay.swift in Sources */,
 				8BDFE2702B604A9E005EA3F0 /* TrackerCategory.swift in Sources */,
+				8BDFE28D2B783287005EA3F0 /* TrackerPlaceholderView.swift in Sources */,
 				8BDFE2892B74385F005EA3F0 /* DataManager.swift in Sources */,
 				8BAED0BD2B51BE82003D7274 /* TrackerViewController.swift in Sources */,
 				8BAED0B92B51BE82003D7274 /* AppDelegate.swift in Sources */,
 				8BDFE2782B616E32005EA3F0 /* TrackerTypeViewController.swift in Sources */,
 				8BDFE2722B604AB5005EA3F0 /* TrackerRecord.swift in Sources */,
 				8BAED0D02B51D4B6003D7274 /* StatisticViewController.swift in Sources */,
+				8BDFE28F2B78345F005EA3F0 /* TrackerPlaceholderNoFilterResultsView.swift in Sources */,
 				8BAED0BB2B51BE82003D7274 /* SceneDelegate.swift in Sources */,
 				8BDFE26E2B604A8C005EA3F0 /* Tracker.swift in Sources */,
 			);

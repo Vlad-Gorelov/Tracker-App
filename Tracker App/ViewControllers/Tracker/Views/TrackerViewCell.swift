@@ -7,8 +7,14 @@
 
 import UIKit
 
+// Создаём делегат для круглой кнопки - нов
+protocol TrackerCellDelegate: AnyObject {
+    func completeTracker(id: UUID, at indexPath: IndexPath)
+    func uncompleteTracker(id: UUID, at indexPath: IndexPath)
+}
+
 final class TrackerCellVC: UICollectionViewCell {
-    static let cellIdetnifier = "TrackersCell"
+    static let cellIdentifier = "TrackerCell"
     var daysCounter = 0
 
     // Верхний прямоугольник
@@ -73,9 +79,9 @@ final class TrackerCellVC: UICollectionViewCell {
     // Круглая кнопка
     private lazy var coloredCircleButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "addTracker"), for: .normal) // ?
+        button.setImage(UIImage(named: "Plus"), for: .normal) // ?
         button.backgroundColor = .colorSelection1
-        let image = UIImage(named: "addTracker")?
+        let image = UIImage(named: "Plus")?
             .withTintColor(UIColor(ciColor: .white), renderingMode: .alwaysOriginal)
             .withConfiguration(UIImage.SymbolConfiguration(pointSize: 12))
         button.setImage(image, for: .normal)
@@ -83,6 +89,11 @@ final class TrackerCellVC: UICollectionViewCell {
         button.addTarget(self, action: #selector(coloredCircleButtonTapped), for: .touchUpInside)
         return button
     }()
+
+    weak var delegate: TrackerCellDelegate?
+    private var isCompletedToday: Bool = false
+    private var trackerId: UUID?
+    private var indexPath: IndexPath?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -106,35 +117,7 @@ final class TrackerCellVC: UICollectionViewCell {
         coloredCircleButton.clipsToBounds = true
     }
 
-    @objc private func coloredCircleButtonTapped() {
-        daysCounter += 1
-        daysCounterLabel.text = "\(daysCounter) \(daysCounter == 1 ? "день" : "дней")"
-
-        // Изменение цвета кнопки
-        UIView.animate(withDuration: 0.3) {
-            self.coloredCircleButton.backgroundColor = self.coloredCircleButton.backgroundColor?.withAlphaComponent(0.3)
-        } completion: { (_) in
-            // Восстановление исходного цвета
-            UIView.animate(withDuration: 0.3) {
-                self.coloredCircleButton.backgroundColor = self.coloredCircleButton.backgroundColor?.withAlphaComponent(1.0)
-            }
-        }
-
-        // Изменение иконки кнопки
-        UIView.transition(with: coloredCircleButton, duration: 0.3, options: .transitionCrossDissolve, animations: {
-            let doneImage = UIImage(named: "Done")?.withTintColor(UIColor(ciColor: .white), renderingMode: .alwaysOriginal)
-            self.coloredCircleButton.setImage(doneImage, for: .normal)
-        }) { (_) in
-            // Задержка для смены обратно на исходную иконку
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                let addTrackerImage = UIImage(named: "addTracker")?.withTintColor(UIColor(ciColor: .white), renderingMode: .alwaysOriginal)
-                self.coloredCircleButton.setImage(addTrackerImage, for: .normal)
-            }
-        }
-    }
-
-
-
+    //MARK: - Helpers
 
     private func setupUI() {
         contentView.addSubview(coloredRectangleView)
@@ -180,13 +163,76 @@ final class TrackerCellVC: UICollectionViewCell {
     }
 
     // добавляем метод configure
-    func configure(with tracker: Tracker) {
+    func configure(
+        with tracker: Tracker,
+        isCompletedToday: Bool,
+        completedDays: Int,
+        indexPath: IndexPath
+    ) {
+        self.trackerId = tracker.id
+        self.isCompletedToday = isCompletedToday
+        self.indexPath = indexPath
+
         mainLabel.text = tracker.name
         emojiLabel.text = tracker.emoji
         coloredRectangleView.backgroundColor = tracker.color // Устанавливаем цвет прямо из tracker
         coloredCircleButton.backgroundColor = coloredRectangleView.backgroundColor
 
-        // Предполагается, что daysCounter будет как-то учитываться или обновляться вне этого метода
-        //  updateDaysCounterLabel()
+        let wordDay = pluralizeDays(completedDays)
+        daysCounterLabel.text = wordDay
+
+        let image = isCompletedToday ? doneImage : plusImage
+        coloredCircleButton.setImage(image, for: .normal) // тут закончили с кнопкой
+
+        // Установка прозрачности цвета фона кнопки
+           let alphaValue: CGFloat = isCompletedToday ? 0.3 : 1.0
+           coloredCircleButton.backgroundColor = coloredCircleButton.backgroundColor?.withAlphaComponent(alphaValue)
+    }
+
+    private func pluralizeDays(_ count: Int) -> String {
+        let remainder10 = count % 10
+        let remainder100 = count % 100
+
+        if remainder10 == 1 && remainder100 != 11 {
+            return "\(count) день"
+        } else if remainder10 >= 2 && remainder100 <= 4 && (remainder100 < 10 || remainder100 >= 20) {
+            return "\(count) дня"
+        } else {
+            return "\(count) дней"
+        }
+    }
+
+    private let plusImage: UIImage = {
+        let image = UIImage(named: "Plus")?.withTintColor(UIColor.ypWhiteDay) ?? UIImage()
+        return image
+    }()
+
+    private let doneImage: UIImage = {
+        let image = UIImage(named: "Done")?.withTintColor(UIColor.ypWhiteDay) ?? UIImage()
+        return image
+    }()
+
+    @objc private func coloredCircleButtonTapped() {
+
+        guard let trackerId = trackerId, let indexPath = indexPath else {
+            assertionFailure("Tracker ID not found")
+            return
+        }
+
+        if isCompletedToday {
+            delegate?.uncompleteTracker(id: trackerId, at: indexPath)
+        } else {
+            delegate?.completeTracker(id: trackerId, at: indexPath)
+        }
+    }
+
+}
+
+extension UIImage {
+    func resized(to size: CGSize) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: size))
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
 }

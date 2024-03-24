@@ -19,7 +19,7 @@ class DataManager {
                     name: "Поливать растения",
                     color: .colorSelection18,
                     emoji: "❤",
-                    schedule: [WeekDay.saturday, WeekDay.sunday]
+                    schedule: [WeekDay.wednesday, WeekDay.sunday, WeekDay.tuesday, WeekDay.friday]
                 )
             ]),
         TrackerCategory(
@@ -30,14 +30,14 @@ class DataManager {
                     name: "Кошка заслонила камеру на созвоне",
                     color: .colorSelection2,
                     emoji: "😻",
-                    schedule: [WeekDay.saturday, WeekDay.sunday]
+                    schedule: [WeekDay.tuesday, WeekDay.friday]
                 ),
                 Tracker(
                     id: UUID(),
                     name: "Бабушка прислала открытку в вотсапе",
                     color: .colorSelection1,
                     emoji: "🌺",
-                    schedule: [WeekDay.saturday, WeekDay.sunday]
+                    schedule: [WeekDay.monday, WeekDay.wednesday, WeekDay.friday]
                 ),
                 Tracker(
                     id: UUID(),

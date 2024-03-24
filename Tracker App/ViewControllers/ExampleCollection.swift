@@ -47,8 +47,11 @@ final class ExampleCollection: UIViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             setupUIStatistic()
+            collectionView.dataSource = self // Установка dataSource перед настройкой ограничений
             setupCollectionConstraint()
         }
+
+
 
     func setupUIStatistic() {
         // Установка цвета фона
